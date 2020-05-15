@@ -2,17 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "type": "java",
             "name": "CodeLens (Launch) - helloworld",
             "request": "launch",
             "mainClass": "JAVA.helloworld",
             "projectName": "workspace_ea45c39b"
-        },
-        {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}"
         },
         {
             "type": "java",
@@ -41,13 +42,11 @@
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\gdb.exe",
             "preLaunchTask": "g++",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
+            "setupCommands": [{
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            }]
         }
     ]
 }
