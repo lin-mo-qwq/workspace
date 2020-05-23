@@ -1,7 +1,6 @@
 
 mem = {};
 
-
 def dp(pos, k):
 	if (pos , k) in mem :
 		return mem[(pos , k)]

@@ -12,7 +12,7 @@
     "python.testing.unittestEnabled": true,
     "python.linting.flake8Enabled": false,
     "editor.insertSpaces":false,
-    "python.pythonPath": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe",
+    "python.pythonPath": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
     "files.associations": {
         "*.tcc": "cpp",
         "cmath": "cpp",
