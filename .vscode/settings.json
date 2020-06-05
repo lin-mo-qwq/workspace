@@ -45,6 +45,5 @@
         "utility": "cpp",
         "iostream": "cpp",
         "ios": "cpp"
-    },
-    "monokaiPro.fileIconsMonochrome": true
+    }
 }
