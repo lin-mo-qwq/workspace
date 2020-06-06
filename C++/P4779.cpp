@@ -1,60 +1,71 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-long n,m,s;
-priority_queue<pair<long,long>, vector<pair<long,long> >, greater<pair<long,long> > >Q; 
+int n,m,s;
+
+struct edge 
+{
+	int to;
+	int key;
+	friend bool operator >(edge a,edge b)
+	{
+		if(a.key!=b.key)
+			return a.key>b.key;
+		return a.to>b.to;
+	}
+};
+
+int R[1000000];
 bool vis[1000000];
-long f[1000000];
-vector<pair<long,long> > e[2000000];
+const int INF=2147483647;
+vector<edge> e[1000000]; 
+priority_queue<edge,vector<edge>,greater<edge> > Q;
 
 void inp()
 {
-	long a,b,w;
+	int u,v,w;
 	cin>>n>>m>>s;
 	for(int i=1;i<=m;i++)
-		cin>>a>>b>>w,e[a].push_back(make_pair(b,w));
+		cin>>u>>v>>w,e[u].push_back((edge){v,w});
 }
 
 void memset()
 {
 	for(int i=1;i<=n;i++)
-		f[i]=2147483647;
+		R[i]=INF;	
 }
 
 void dij(int s)
 {
-	f[s]=0;
-	Q.push(make_pair(0,s));
+	R[s]=0;
+	Q.push((edge){s,0});
 	while(!Q.empty())
 	{
-		long x=Q.top().second;
-		Q.pop(); 
+		int x=Q.top().to;
+		Q.pop();
 		if(vis[x])
 			continue;
 		vis[x]=true;
-		for(size_t i=0;i<e[x].size();i++)
+		for(int i=0;i<e[x].size();i++)
 		{
-			int v=e[x][i].first;
-			if(f[v]>f[x]+e[x][i].second)
-			{
-				f[v]=f[x]+e[x][i].second;
-				Q.push(make_pair(f[v],v));
-			}
+			int v=e[x][i].to;
+			if(R[v]>R[x]+e[x][i].key)
+				R[v]=R[x]+e[x][i].key,Q.push((edge){v,R[v]});
 		}
 	}
 }
 
-void work()
+void print()
 {
-	memset();
-	dij(s);
 	for(int i=1;i<=n;i++)
-		cout<<f[i]<<' ';
+		cout<<R[i]<<' ';
 }
 
 int main()
 {
 	inp();
-	work();
+	memset();
+	dij(s);
+	print();
 	return 0;
 }
