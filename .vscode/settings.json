@@ -9,7 +9,7 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.nosetestsEnabled": false,
-    "python.testing.unittestEnabled": true,
+    "python.testing.unittestEnabled": false,
     "python.linting.flake8Enabled": false,
     "editor.insertSpaces":false,
     "python.pythonPath": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
@@ -44,6 +44,8 @@
         "tuple": "cpp",
         "utility": "cpp",
         "iostream": "cpp",
-        "ios": "cpp"
-    }
+        "ios": "cpp",
+        "filesystem": "cpp"
+    },
+    "python.testing.promptToConfigure": false
 }
