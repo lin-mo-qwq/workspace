@@ -17,6 +17,5 @@ def dp(pos, k):
 	return mem[(pos , k)];
 
 n , k=map(int,input().split());
-s=input();
+s=input(); 
 print(dp(n,k+1))
-
