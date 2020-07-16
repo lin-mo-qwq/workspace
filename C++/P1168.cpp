@@ -4,7 +4,7 @@ using namespace std;
 size_t a[1000000], n, ans;
 priority_queue<size_t> bigger;
 priority_queue<size_t, vector<int>, greater<int>> litter;
-void ins()
+void inp()
 {
 	cin >> n;
 	for (size_t i = 1; i <= n; i++)
@@ -51,7 +51,7 @@ void work()
 
 int main()
 {
-	ins();
+	inp();
 	work();
 	__gcd(3, 60);
 	return 0;

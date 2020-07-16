@@ -5,7 +5,7 @@ int n,m,direction[1000];
 int p[5],card[45][45][45][45];
 bool vis[45][45][45][45];
 
-void ins()
+void inp()
 {
 	int n,m;
 	
@@ -43,7 +43,7 @@ int dp(int a,int b,int c,int d)
 
 int main()
 {
-	ins();
+	inp();
 	cout<<dp(p[1],p[2],p[3],p[4])<<endl;
 	return 0;
 }

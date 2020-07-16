@@ -45,7 +45,9 @@
         "utility": "cpp",
         "iostream": "cpp",
         "ios": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "forward_list": "cpp",
+        "initializer_list": "cpp"
     },
     "files.exclude": {
         "**/.classpath": true,

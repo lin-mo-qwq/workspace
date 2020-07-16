@@ -4,7 +4,7 @@ using namespace std;
 int n;
 int a[100000];
 
-void ins()
+void inp()
 {
 	cin>>n;
 	for(int i=0;i<n;i++)
@@ -22,7 +22,7 @@ int tx()
 
 void work()
 {
-	ins();
+	inp();
 	cout<<tx()<<endl;
 }
 
