@@ -17,7 +17,6 @@ int find(int x,int y)
 	for(int i=y;i;i-=lowbit(i))
 		ans+=t[i];
 
-	cout<<ans<<' '<<endl;
 
 	for(int i=x-1;i;i-=lowbit(i))
 		ans-=t[i];
@@ -30,8 +29,8 @@ int main()
 {
 	cin>>n>>m;
 
-	for(int i=1;i<=n;i++)
-		cin>>t[i],modty(i,t[i]);
+	for(int i=1,x;i<=n;i++)
+		cin>>x,modty(i,x);
 
 	while(m--)
 	{
