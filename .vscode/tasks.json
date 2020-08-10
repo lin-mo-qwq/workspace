@@ -27,5 +27,28 @@
     "group": {
         "kind": "build",
         "isDefault": true
-    }
+    },
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: clang.exe build active file",
+            "command": "D:\\LLVM\\bin\\clang.exe",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
 }
