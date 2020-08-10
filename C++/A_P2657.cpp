@@ -25,6 +25,9 @@ int windy(int n)
 		for (int j = 1;j <= 9; j++)
 			dp[i][j][1] =1;
 
+	if( n <= 10)
+		dp[1][1][1]=1,dp[2][1][0]=0;
+	
 	for (int i = len; i >= 1; i--)
 		for (int j = 1; j <= ns[i]; j++)
 		{
