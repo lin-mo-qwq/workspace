@@ -55,6 +55,9 @@ int windy(int n)
 
 	ans += dp[len][ns[len]][0];
 
+	for(int i=0;i<ns[len];i++)
+		ans += dp[len][i][1];
+
 	return ans;
 }
 
