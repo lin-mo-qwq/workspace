@@ -28,7 +28,7 @@ void build(tree2 *tree, int l, int r)
 	build(tree->lson, l, mid);
 	build(tree->rson, mid + 1, r);
 
-	tree->x = (tree->lson->x + tree->rson->x)%P;
+	tree->x = (tree->lson->x + tree->rson->x) % P;
 }
 
 void pushdown(tree2 *tree, int l, int r)
@@ -53,7 +53,7 @@ void change1(tree2 *tree, int l, int r, int x, int y, int d)
 {
 	if (x <= l && y >= r)
 	{
-		if (tree->alazy)	
+		if (tree->alazy)
 			pushdown(tree, l, r);
 		tree->x = (tree->x * d) % P;
 		tree->mlazy = (tree->mlazy * d) % P;
@@ -69,7 +69,7 @@ void change1(tree2 *tree, int l, int r, int x, int y, int d)
 	if (y > mid)
 		change1(tree->rson, mid + 1, r, x, y, d);
 
-	tree->x = (tree->lson->x + tree->rson->x)%P;
+	tree->x = (tree->lson->x + tree->rson->x) % P;
 }
 
 void change2(tree2 *tree, int l, int r, int x, int y, int d)
@@ -90,7 +90,7 @@ void change2(tree2 *tree, int l, int r, int x, int y, int d)
 	if (y > mid)
 		change2(tree->rson, mid + 1, r, x, y, d);
 
-	tree->x = (tree->lson->x + tree->rson->x)%P;
+	tree->x = (tree->lson->x + tree->rson->x) % P;
 }
 
 ll query(tree2 *tree, int l, int r, int x, int y)
@@ -109,38 +109,38 @@ ll query(tree2 *tree, int l, int r, int x, int y)
 	if (y > mid)
 		t2 = query(tree->rson, mid + 1, r, x, y);
 
-	return (t1 + t2)%P;
+	return (t1 + t2) % P;
 }
 
 int main()
 {
-	cin>>n>>m>>P;
-	
-	for(int i=1;i<=n;i++)
-		cin>>a[i];
-	build(root,1,n);
+	cin >> n >> m >> P;
 
-	for(int i=1;i<=m;i++)
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	build(root, 1, n);
+
+	for (int i = 1; i <= m; i++)
 	{
 		int opt;
-		cin>>opt;
-		if(opt==1)
+		cin >> opt;
+		if (opt == 1)
 		{
-			int x,y,k;
-			cin>>x>>y>>k;
-			change1(root,1,n,x,y,k);
+			int x, y, k;
+			cin >> x >> y >> k;
+			change1(root, 1, n, x, y, k);
 		}
-		else if(opt==2)
+		else if (opt == 2)
 		{
-			int x,y,k;
-			cin>>x>>y>>k;
-			change2(root,1,n,x,y,k);
+			int x, y, k;
+			cin >> x >> y >> k;
+			change2(root, 1, n, x, y, k);
 		}
 		else
 		{
-			int x,y;
-			cin>>x>>y;
-			cout<<query(root,1,n,x,y)<<endl;
+			int x, y;
+			cin >> x >> y;
+			cout << query(root, 1, n, x, y) << endl;
 		}
 	}
 	return 0;
