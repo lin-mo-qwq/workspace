@@ -15,7 +15,7 @@ int main()
 	ll n, k;
 	cin >> n >> k;
 
-	if(isprime(k+1)&&2*k>=n)
+	if(isprime(k + 1) && 2 * k >= n)
 		cout << 1 << endl;
 	else
 		cout << 2 << endl;
