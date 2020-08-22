@@ -9,7 +9,7 @@ int main()
 	for(int i=1; i<=n; i++)
 		cin>> a[i];
 	for(int i=1; i<=n ;i++)
-		dp[i]=max(dp[i-1]+a[i],a[i]),ans=max(ans,dp[i]);
+		dp[i] = max( dp[i - 1] + a[i], a[i]), ans = max(ans, dp[i]);
 	cout<<ans<<endl;
 	return 0;
 }
