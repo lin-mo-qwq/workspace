@@ -35,6 +35,3 @@ int main()
 	cout << sum_gcd(n) << endl;
 	return 0;
 }
-
-/*git config --global user.email "2823696074@qq.com"
-  git config --global user.name "lin-mo-qwq"*/
