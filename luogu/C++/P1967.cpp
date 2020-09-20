@@ -1,65 +1,68 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+
+#define M 10005
 
 struct edge
 {
 	int from;
 	int to;
 	int key;
-	friend bool operator < (edge a,edge b)
+	friend bool operator<(edge a, edge b)
 	{
-		return a.key>b.key;
+		return a.key > b.key;
 	}
 };
 
 vector<edge> E;
 int dad[10000];
-int n,m,ans,cnt;
+int n, m, cnt;
 
 int anc(int x)
 {
-	if(x!=dad[x]) return dad[x]=anc(dad[x]);
+	if (x != dad[x])
+		return dad[x] = anc(dad[x]);
 	return x;
 }
 
-void uni(int x,int y)
+void uni(int x, int y)
 {
-	x=anc(x),y=anc(y);
-	if(x!=y)
-		dad[x]=y;
+	x = anc(x), y = anc(y);
+	if (x != y)
+		dad[x] = y;
 }
 
-bool ask(int x,int y)
+bool ask(int x, int y)
 {
-	return anc(x)==anc(y);
+	return anc(x) == anc(y);
 }
 
 void inp()
 {
-	cin>>n>>m;
-	for(int i=1;i<=m;i++)
+	cin >> n >> m;
+	for (int i = 1; i <= m; i++)
 	{
-		int x,y,z;
-		cin>>x>>y>>z;
-		E.push_back((edge){x,y,z});
+		int x, y, z;
+		cin >> x >> y >> z;
+		E.push_back((edge){x, y, z});
 	}
 }
 
 void memset()
 {
-	for(int i=1;i<=n;i++)
-		dad[i]=i;
+	for (int i = 1; i <= n; i++)
+		dad[i] = i;
 }
 
 void kruskal()
 {
-	sort(E.begin(),E.end());
-	for(int i=0;i<m;i++)
+	sort(E.begin(), E.end());
+	for (int i = 0; i < m; i++)
 	{
-		if(ask(E[i].from,E[i].to)) continue;
-		uni(E[i].from,E[i].to);
-		ans+=E[i].key,cnt++;
-		if(cnt==n-1)
+		if (ask(E[i].from, E[i].to))
+			continue;
+		uni(E[i].from, E[i].to);
+		if (cnt == n - 1)
 			break;
 	}
 }
