@@ -6,7 +6,9 @@ int t[5][21], l, r, ans, fast;
 void solve(int x, int size)
 {
 	if(x > s[size])
-		fast = min(fast, max(l, r));
+	{
+		fast = min(fast, max(l, r)); return;
+	}
 	l += t[size][x];
 	solve(x + 1, size);
 	l -= t[size][x];
@@ -23,7 +25,8 @@ int main()
 		l = r = 0, fast = 2147483647;
 		for(int j = 1; j <= s[i]; j++)
 			cin>>t[i][j];
-		solve(1, s[i]), ans += fast;
+		solve(1, i), ans += fast;
 	}
-	cout<<fast<<endl;
+	cout<<ans<<endl;
+	return 0;
 }
