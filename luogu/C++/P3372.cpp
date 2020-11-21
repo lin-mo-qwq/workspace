@@ -44,7 +44,7 @@ void build(tree2 *tree,int l,int r)
 	tree->x=tree->lson->x+tree->rson->x;
 }
 
-void change(tree2 *tree,int l,int r,int x,int y,int d)
+void add(tree2 *tree,int l,int r,int x,int y,int d)
 {
 	if(x<=l&&y>=r)
 	{
@@ -57,8 +57,8 @@ void change(tree2 *tree,int l,int r,int x,int y,int d)
 	
 	int mid=(l+r)/2;
 
-	if(x<=mid)	change(tree->lson,l,mid,x,y,d);
-	if(y>mid)	change(tree->rson,mid+1,r,x,y,d);
+	if(x<=mid)	add(tree->lson,l,mid,x,y,d);
+	if(y>mid)	add(tree->rson,mid+1,r,x,y,d);
 
 	tree->x=tree->lson->x+tree->rson->x;
 }
@@ -100,7 +100,7 @@ int main()
 			
 			cin>>x>>y>>k;
 
-			change(root,1,n,x,y,k);
+			add(root,1,n,x,y,k);
 		}
 		else
 		{

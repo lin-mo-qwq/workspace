@@ -26,7 +26,7 @@ void pushdown(tree2 *tree,int l,int r)
 }
 
 
-void change(tree2 *tree,int l,int r,int x,int y,int d)
+void add(tree2 *tree,int l,int r,int x,int y,int d)
 {
 	if(x<=l&&y>=r)
 	{
@@ -45,8 +45,8 @@ void change(tree2 *tree,int l,int r,int x,int y,int d)
 	
 	int mid=(l+r)/2;
 
-	if(x<=mid)	change(tree->lson,l,mid,x,y,d);
-	if(y>mid)	change(tree->rson,mid+1,r,x,y,d);
+	if(x<=mid)	add(tree->lson,l,mid,x,y,d);
+	if(y>mid)	add(tree->rson,mid+1,r,x,y,d);
 
 	tree->x=max(tree->lson->x,tree->rson->x);
 }
@@ -83,7 +83,7 @@ int main()
 		sort(a+1,a+2*n+1);
 		for(int i=1;i<=n*2;i++)
 		{
-			change(root,1,MAXINT,a[i].y,min((ll)a[i].y+h-1,MAXINT),a[i].l);
+			add(root,1,MAXINT,a[i].y,min((ll)a[i].y+h-1,MAXINT),a[i].l);
 			if(a[i+1].x!=a[i].x)
 				ans=max(ans,root->x);
 		}
