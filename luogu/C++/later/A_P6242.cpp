@@ -15,7 +15,7 @@ inline int read()
 struct tree2
 {
 	tree2 *lson, *rson;
-	ll lazy, x, past;
+	ll lazy, x, past, max, maxpast;
 } dizhi[M << 2], *root = &dizhi[0];
 
 int n, m, a[M], t;
@@ -23,9 +23,9 @@ int n, m, a[M], t;
 void pushdown(tree2 *tree, int l, int r)
 {
 	if(!tree->lazy) return;
-
 	int mid = (l + r) / 2;
 
+	tree->max += tree->lazy;
 	tree->lson->x += tree->lazy * (mid - l + 1);
 	tree->rson->x += tree->lazy * (r - mid);
 	tree->lson->lazy += tree->lazy;
@@ -36,6 +36,8 @@ void pushdown(tree2 *tree, int l, int r)
 void update(tree2* tree)
 {
  	tree->x = tree->lson->x + tree->rson->x;
+	tree->max = max(tree->lson->max, tree->rson->max);
+	tree->maxpast = max(tree->lson->maxpast, tree->rson->maxpast);
 }
 
 void addpoint(tree2 *tree)
@@ -48,7 +50,7 @@ void build(tree2 *tree, int l, int r)
 {
 	if(l == r)
 	{
-		tree->past = tree->x = a[l];
+		tree->maxpast = tree->max = tree->past = tree->x = a[l];
 		return;
 	}
 	int mid = (l + r) / 2;
@@ -63,7 +65,7 @@ void add(tree2 *tree, int l, int r, int x, int y, int d)
 	if(x <= l && y >= r)
 	{
 		tree->x += (ll)d * (r - l + 1);
-		tree->past = max(tree->x, tree->past);
+		if(l == r) tree->past = max(tree->x, tree->past);
 		tree->lazy += d;
 		return;
 	}
@@ -78,8 +80,8 @@ void change(tree2 *tree, int l, int r, int x, int y, int d)
 {
 	if(l == r && x <= l && y >= r)
 	{
-		tree->x = min(tree->x, (ll)d);
-		tree->past = max(tree->x, tree->past);
+		tree->max = tree->x = min(tree->x, (ll)d);
+		tree->maxpast = tree->past = max(tree->x, tree->past);
 		return;
 	}
 	int mid = (l + r) / 2;
@@ -103,7 +105,8 @@ ll query(tree2 *tree, int l, int r, int x, int y)
 ll findmax(tree2 *tree, int l, int r, int x, int y)
 {
 	if(x <= l && y >= r)	
-		return tree->x;
+		return tree->max;
+	pushdown(tree, l, r);
 	int mid = (l + r) / 2;
 	ll t1 = INF, t2 = INF;
 	if(x <= mid) t1 = findmax(tree->lson, l, mid, x, y);
@@ -114,7 +117,8 @@ ll findmax(tree2 *tree, int l, int r, int x, int y)
 ll findpast(tree2 *tree, int l, int r, int x, int y)
 {
 	if(x <= l && y >= r)	
-		return tree->past;
+		return tree->maxpast;
+	pushdown(tree, l, r); 
 	int mid = (l + r) / 2;
 	ll t1 = INF, t2 = INF;
 	if(x <= mid) t1 = findpast(tree->lson, l, mid, x, y);
