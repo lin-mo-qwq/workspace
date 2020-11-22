@@ -15,7 +15,7 @@ inline int read()
 struct tree2
 {
 	tree2 *lson, *rson;
-	ll lazy, max, x, past, pastmax;
+	ll lazy, x, past;
 } dizhi[M << 2], *root = &dizhi[0];
 
 int n, m, a[M], t;
@@ -36,8 +36,6 @@ void pushdown(tree2 *tree, int l, int r)
 void update(tree2* tree)
 {
  	tree->x = tree->lson->x + tree->rson->x;
-	tree->max = max(tree->lson->max, tree->lson->max);
-	tree->pastmax = max(tree->pastmax, tree->pastmax);
 }
 
 void addpoint(tree2 *tree)
@@ -50,7 +48,7 @@ void build(tree2 *tree, int l, int r)
 {
 	if(l == r)
 	{
-		tree->past = tree->pastmax = tree->max = tree->x = a[l];
+		tree->past = tree->x = a[l];
 		return;
 	}
 	int mid = (l + r) / 2;
@@ -105,7 +103,7 @@ ll query(tree2 *tree, int l, int r, int x, int y)
 ll findmax(tree2 *tree, int l, int r, int x, int y)
 {
 	if(x <= l && y >= r)	
-		return tree->max;
+		return tree->x;
 	int mid = (l + r) / 2;
 	ll t1 = INF, t2 = INF;
 	if(x <= mid) t1 = findmax(tree->lson, l, mid, x, y);
@@ -116,7 +114,7 @@ ll findmax(tree2 *tree, int l, int r, int x, int y)
 ll findpast(tree2 *tree, int l, int r, int x, int y)
 {
 	if(x <= l && y >= r)	
-		return tree->pastmax;
+		return tree->past;
 	int mid = (l + r) / 2;
 	ll t1 = INF, t2 = INF;
 	if(x <= mid) t1 = findpast(tree->lson, l, mid, x, y);
