@@ -53,6 +53,5 @@ int main()
 {
 	inp();
 	work();
-	__gcd(3, 60);
 	return 0;
 }

@@ -2,7 +2,7 @@
 using namespace std;
 #pragma GCC optimize(2)
 #define M 100005
-#define clr(x) memset(x,0,sizeof(x))
+#define clr(x) memset(x, 0, sizeof(x))
 typedef long long ll;
 
 
@@ -28,13 +28,13 @@ void build(tree2 *tree, int l, int r)
 		return ;
 	}
 
-	int mid = (l+r)/2;
+	int mid = (l + r) / 2;
 
 	tree->lson = &dizhi[++t];
 	tree->rson = &dizhi[++t];
 
 	build(tree->lson, l, mid);
-	build(tree->rson, mid+1, r);
+	build(tree->rson, mid + 1, r);
 	update(tree);
 }
 
@@ -46,10 +46,10 @@ void change(tree2 *tree, int l, int r, int x, int y)
 		return ;
 	}
 
-	int mid = (l+r)/2;
+	int mid = (l + r) / 2;
 
-	if(x <= mid && tree->max>1)	change(tree->lson, l, mid, x, y);
-	if(y > mid && tree->max>1)	change(tree->rson, mid+1, r, x, y);
+	if(x <= mid && tree->max > 1)	change(tree->lson, l, mid, x, y);
+	if(y > mid && tree->max > 1)	change(tree->rson, mid + 1, r, x, y);
 
 	update(tree);
 }
@@ -63,10 +63,10 @@ ll query(tree2 *tree, int l, int r, int x, int y)
 
 	ll t1 = 0,t2 = 0;
 
-	if(x<=mid)	t1 = query(tree->lson,l,mid,x,y);
-	if(y>mid) t2 = query(tree->rson,mid+1,r,x,y);
+	if(x <= mid)	t1 = query(tree->lson, l, mid, x, y);
+	if(y > mid) t2 = query(tree->rson, mid + 1, r, x, y);
 
-	return t1+t2;
+	return t1 + t2;
 }
 
 int main()
@@ -99,10 +99,8 @@ int main()
 			if(l > r)
 				swap(l, r);
 
-			if(k == 0)
-				change(root, 1, n, l, r);
-			else
-				printf("%lld\n\n", query(root, 1, n, l, r));
+			if(k == 0)	change(root, 1, n, l, r);
+			else	printf("%lld\n\n", query(root, 1, n, l, r));
 		}
 	}	
 	return 0;
