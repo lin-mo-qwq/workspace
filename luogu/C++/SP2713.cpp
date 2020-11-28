@@ -56,7 +56,7 @@ void change(tree2 *tree, int l, int r, int x, int y)
 
 ll query(tree2 *tree, int l, int r, int x, int y)
 {
-	if(x<=l&&y>=r)
+	if(x <= l && y >= r)
 		return tree->sum;
 	
 	int mid=(l+r)/2;
