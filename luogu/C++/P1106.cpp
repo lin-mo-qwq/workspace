@@ -1,62 +1,44 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int n,k;
-stack <int> rss;
-deque <int> ans; 
+int n, k;
+string res;
+stack<int> rss;
+deque<int> ans;
 
-void push(int x)
+void push(int x , int i)
 {
-	while ( !rss.empty() )
+	while (!rss.empty())
 	{
-		if(k!=0 && rss.top() > x)
-			rss.pop(),k--;
-		else
-			break;
+		if(k != 0 && rss.top() > x)
+			rss.pop(), k--;
+		else break;
 	}
-
+	if(x == 0 && rss.empty() && i + 1 < res.length()) return;
 	rss.push(x);
-
-	if( k!=0 &&rss.top()==0)
-		while(!rss.empty())
-		{
-			if(rss.top()==0)
-				rss.pop();
-
-			else
-				break;
-		}
-}	
+}
 
 int main()
 {
-
-	string res;
-	cin>>res;
-	cin>>k;
-	for(int i=0;i<res.size();i++)
-		push(res[i]-'0');
-
+	cin >> res; cin >> k;
+	for (int i = 0; i < res.size(); i++)
+		push(res[i] - '0', i);
 	
-	while(k!=0 && !rss.empty())
-		rss.pop(),k--;
+	while (k != 0 && !rss.empty())
+		rss.pop(), k--;
 	
 	while (!rss.empty())
 	{
-		
 		ans.push_front(rss.top());
 		rss.pop();
 	}
 
-	
-	while(!ans.empty())
+	while (!ans.empty())
 	{
 		cout<<ans.front();
 		ans.pop_front();
 	}
 
 	puts("");
-
-	
 	return 0;
 }
