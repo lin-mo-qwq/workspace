@@ -2,18 +2,18 @@
 using namespace std;
 int r, c, ret[105][105], len[105][105], ans;
 
-int max_len(int i, int j)
+int max_len(int x, int y)
 {
-	if(len[i][j] > 1) return len[i][j]; 
-	if(ret[i][j + 1] < ret[i][j]) 
-		len[i][j] = max(len[i][j], max_len(i, j + 1) + 1);
-	if(ret[i][j - 1] < ret[i][j]) 
-		len[i][j] = max(len[i][j], max_len(i, j - 1) + 1);
-	if(ret[i + 1][j] < ret[i][j]) 
-		len[i][j] = max(len[i][j], max_len(i + 1, j) + 1);
-	if(ret[i - 1][j] < ret[i][j]) 
-		len[i][j] = max(len[i][j], max_len(i - 1, j) + 1);
-	return len[i][j];
+	if(len[x][y] > 1) return len[x][y]; 
+	if(ret[x][y + 1] < ret[x][y]) 
+		len[x][y] = max(len[x][y], max_len(x, y + 1) + 1);
+	if(ret[x][y - 1] < ret[x][y]) 
+		len[x][y] = max(len[x][y], max_len(x, y - 1) + 1);
+	if(ret[x + 1][y] < ret[x][y]) 
+		len[x][y] = max(len[x][y], max_len(x + 1, y) + 1);
+	if(ret[x - 1][y] < ret[x][y]) 
+		len[x][y] = max(len[x][y], max_len(x - 1, y) + 1);
+	return len[x][y];
 }
 
 int main()
