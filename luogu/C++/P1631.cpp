@@ -1,26 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define M (int)(1e5 * 2 + 5)
-int n, m, a[M];
-priority_queue<int> qmax;
-priority_queue<int, vector<int>, greater<int> > qmin;
+const int M = 100005;
+#define _mp(a, b) make_pair((a), (b))
+int n, a[M], b[M], cnt = 1, i, nxt[M];
+priority_queue <pair<int, int>, vector<pair<int, int> >, greater<pair<int,int> > > q;
 int main()
 {
-	cin>>n>>m;
-
+	cin>>n;
 	for(int i = 1; i <= n; i++) cin>>a[i];
-	for(int i = 1, tmp, j = 1; i <= m; i++)
+	for(int i = 1; i <= n; i++) cin>>b[i], nxt[i] = 1, q.push(_mp(a[1] + b[i], i));
+	while(n--)
 	{
-		cin>>tmp; 
-		while (j <= tmp)
-		{
-			qmax.push(a[j]);
-			if(qmax.size() == i) 
-				qmin.push(qmax.top()), qmax.pop();
-			j++;
-		}
-		cout<<qmin.top()<<endl;
-		qmax.push(qmin.top()), qmin.pop();
+		cout<<q.top().first<<' ';
+		i = q.top().second, q.pop();
+		q.push(_mp(b[i] + a[++nxt[i]], i));
 	}
 	return 0;
 }
