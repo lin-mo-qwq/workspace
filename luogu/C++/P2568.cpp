@@ -6,19 +6,19 @@ using namespace std;
 typedef long long ll;
 int tot, phi[M], pri[M], p;
 ll sum[M], ans;
-bool ispri[M];
+bool is_pri[M];
 
 void work(int x)
 {
-	clr(ispri);
+	clr(is_pri);
 	phi[1] = 1;
 	for(int i = 2; i <= x; i++)
 	{
 		
-		if(ispri[i]) pri[++tot] = i, phi[i] = i - 1;
+		if(is_pri[i]) pri[++tot] = i, phi[i] = i - 1;
 		for(int j = 1; j <= tot && i * pri[j] <= x; j++)
 		{
-			ispri[i * pri[j]] = false;
+			is_pri[i * pri[j]] = false;
 			if(i % pri[j] == 0)
 			{
 				phi[i * pri[j]] = phi[i] * pri[j];
