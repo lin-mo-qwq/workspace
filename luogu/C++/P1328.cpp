@@ -2,7 +2,7 @@
 using namespace std;
 
 queue <int> A, B;
-int n, na, nb, ansa, ansb;
+int n, na, nb, ans, asn;
 int score[6][6]={{0,0,1,1,0},{1,0,0,1,0},{0,1,0,0,1},{0,0,1,0,1},{1,1,0,0,0}}; 
 
 int main()
@@ -27,14 +27,14 @@ int main()
 		int a = A.front(), b = B.front();
 
 		if(score[a][b])
-			ansa++;
+			ans++;
 		if(score[b][a])
-			ansb++;
+			asn++;
 
 		A.pop(), A.push(a), B.pop(), B.push(b);
 	}
 
-	cout<<ansa<<' '<<ansb<<endl;
+	cout<<ans<<' '<<asn<<endl;
 
 	return 0;
 }
