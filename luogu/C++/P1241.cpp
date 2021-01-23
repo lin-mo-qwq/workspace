@@ -1,44 +1,35 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 string k;
-stack <char> S;
-deque <char> ans;
-
-void push(char x)
-{
-	if(x=='['||x=='(')
-		S.push(x);
-
-	if(S.empty())
-		return  ;
-		
-	if((S.top()=='('&&x==')')||(S.top()=='['&&x==']'))
-		ans.push_back(S.top()),ans.push_back(x),S.pop();
-
-
-}
-
+bool vis[10005];
 int main()
 {
 	cin>>k;
-
-	for(int i=0;i<k.size();i++)
-		push(k[i]);	
-		
-
-	while(!S.empty())
+	for(int i = 0; i < k.length(); i++)
 	{
-		if(S.top()=='[')
-			ans.push_front(']'),ans.push_front('[');
-		else
-			ans.push_front(')'),ans.push_front('(');
-		
-		S.pop();
+		if(k[i] == ')' || k[i] == ']')
+		{ 
+			for(int j = i - 1; j >= 0; j--)
+			{
+				if((k[j] == '(' && k[i] == ')') || (k[j] == '[' && k[i] == ']'))
+					if(!vis[j]) 
+					{
+						vis[i] = vis[j] = true;
+						break;
+					}
+				if((k[j] == '[' && k[i] == ')') || (k[j] == '(' && k[i] == ']'))
+					if(!vis[j]) break;
+			}
+		}
 	}
-
-	for(auto i:ans)
-		cout<<i;
-
+	for(int i = 0; i < k.length(); i++)
+	{	
+		if(!vis[i])
+		{
+			if(k[i] == '(' or k[i] == ')') cout<<"()";
+			else cout<<"[]";
+		} 
+		else cout<<k[i];
+	}
 	return 0;
 }
