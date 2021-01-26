@@ -19,7 +19,7 @@ int main()
 				if(hh <= tt) f[k] = max(f[k], g[q[hh]] + (k - q[hh]) / v * w);
 				while(hh <= tt && g[q[tt]] - (q[tt] - j) / v * w <= g[k] - (k - j) / v * w) tt--;
 				q[++tt] = k;
-			}			
+			}
 		}
 	}
 	cout<<f[m]<<endl;
