@@ -5,7 +5,7 @@ int f[N][N];
 int main() {
 	string a;
 	cin>>a;
-	int n = a.length() - 1;
+	int n = a.length();
 	
 	for(int i = 0; i < n; i++) 
 		f[i][i] = 1;
