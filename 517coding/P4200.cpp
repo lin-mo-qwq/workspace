@@ -26,7 +26,7 @@ int main() {
 				time[mask] += a[i].need;
 			}
 		}
-	}
+	} 
 
 	for(int i = 0; i < n; i++) {
 		if(a[i].need - a[i].ddl > 0) {
