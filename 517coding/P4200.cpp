@@ -1,7 +1,7 @@
 #include<cstdio>
 #include<cstring>
 const int N = 20, INF = 0x3f3f3f3f;
-int n, f[(1 << N)][N], time[(1 << N)];
+int n, f[(1 << N)][N], time[(1 << N)], ans[N];
 struct tasks {
 	char name[105];
 	int ddl, need;
@@ -26,11 +26,11 @@ int main() {
 				time[mask] += a[i].need;
 			}
 		}
-	} 
+	}
 
 	for(int i = 0; i < n; i++) {
 		if(a[i].need - a[i].ddl > 0) {
-			f[(1 << i)][i] = time[(1 << i)];
+			f[(1 << i)][i] = a[i].need - a[i].ddl;
 		} else {
 			f[(1 << i)][i] = 0;
 		}
@@ -46,9 +46,9 @@ int main() {
  		}
 	}
 
-	int ret = INF, mask = (1 << n) - 1, end;
+	int ret = INF, mask = (1 << n) - 1, end, len = n;
 	for(int i = 0; i < n; i++) {
-		if(ret > f[(1 << n) - 1][i]) {
+		if(ret >= f[(1 << n) - 1][i]) {
 			ret = f[(1 << n) - 1][i];
 			end = i;
 		}
@@ -57,15 +57,19 @@ int main() {
 	printf("%d\n", ret);
 	while(mask > 0) {
 		int cnt = (time[mask] - a[end].ddl);
+		if(cnt < 0) cnt = 0;
+		ans[--len] = end;
 		int tmp = f[mask][end] - cnt;
-		printf("%s\n", a[end].name);
 		mask -= (1 << end);
 		for(int i = 0; i < n; i++) {
-			printf("%d %d\n", mask, i);
 			if(f[mask][i] == tmp) {
 				end = i;
 			}
 		}
+	}
+
+	for(int i = 0; i < n; i++) {
+		printf("%s\n", 	a[ans[i]].name);
 	}
 	return 0;
 }
