@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-int n, f[105][105], f[105][105];
+int n, f[105][105];
 
 int find_min()
 {

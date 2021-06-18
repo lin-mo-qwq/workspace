@@ -4,7 +4,7 @@ using namespace std;
 int n;
 char opt[105];
 int p[105], f[105][105];
-int f[105][105], g[105][105];
+int g[105][105];
 const int INF = 1145148989;
 
 

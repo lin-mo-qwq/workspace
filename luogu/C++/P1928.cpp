@@ -6,19 +6,18 @@ string read()
 	int n;
 	char c;
 	string s, s1;
-	while(cin >> c)
-	{
-		if(c == '[')
-		{
-			cin >> n;
-			s1 = read();
-			while(n--) s += s1;
-		}
-		else if(c == ']')
-			return s;
-		else
-			s += c;
-	}
+	while(cin >> c) {
+        if (c == '[') {
+            cin >> n;
+            s1 = read();
+            while (n--) s += s1;
+        } else if (c == ']')
+            return s;
+        else {
+            s += c;
+        }
+    }
+    return "";
 }
 
 int main()

@@ -5,7 +5,7 @@ using namespace std;
 vector<int> V[M];
 int n, k, deep[M], poi[M], fa[21][M], ans;
 
-int inp()
+void inp()
 {
 	cin >> n >> k;
 	for(int i = 1; i < n; i++)
