@@ -24,10 +24,10 @@ void init(int n, int ret[]) {
 
 int ask_st(int x, int y){
 	int len = y - x + 1;
-	int k = Log[len];
 	if(len <= 0) {
 		return INF;
 	}
+	int k = Log[len];
 	return max(f[k][x], f[k][y - (1 << k) + 1]);
 }
 
