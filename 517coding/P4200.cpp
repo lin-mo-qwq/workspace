@@ -7,7 +7,7 @@ struct tasks {
 	int ddl, need;
 } a[N];
 
-void checkmin(int &x, int y) {
+void checkMin(int &x, int y) {
 	if(x > y) {
 		x = y;
 	}
@@ -41,7 +41,7 @@ int main() {
 			for(int nxt = 0; nxt < n; nxt++) if(!(mask & (1 << nxt))) {
 				int cnt = (time[mask | (1 << nxt)] - a[nxt].ddl);
 				if(cnt < 0) cnt = 0;
-				checkmin(f[mask | (1 << nxt)][nxt], f[mask][end] + cnt);
+				checkMin(f[mask | (1 << nxt)][nxt], f[mask][end] + cnt);
 			}
  		}
 	}
