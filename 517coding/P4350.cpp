@@ -4,7 +4,7 @@ const int N = 1e5 + 5;
 int n, k;
 int vis[N];
 int cnt[N], ans[N];
-int deep[N], fa[20][N];
+int deep[N], fa[32][N];
 vector<pair<int, int>> E[N];
 
 void dfs(int cur, int pre) {
@@ -19,7 +19,7 @@ void dfs(int cur, int pre) {
 }
 
 void init() {
-	for(int i = 1; i <= 20; i++) {
+	for(int i = 1; i < 31; i++) {
 		for(int j = 1; j <= n; j++) {
 			fa[i][j] = fa[i - 1][fa[i - 1][j]];
 		}
@@ -33,7 +33,7 @@ int lca(int x, int y) {
 
 	int tmp = deep[y] - deep[x];
 
-	for(int i = 1; i <= 20; i++) {
+	for(int i = 0; i < 31; i++) {
 		if(tmp & (1 << i)) {
 			y = fa[i][y];
 		}
@@ -43,7 +43,7 @@ int lca(int x, int y) {
 		return x;
 	}
 
-	for(int i = 20; i >= 1; i--) {
+	for(int i = 30; i >= 0; i--) {
 		if(fa[i][x] != fa[i][y]) {
 			x = fa[i][x];
 			y = fa[i][y];
