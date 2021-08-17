@@ -4,7 +4,7 @@ typedef long long ll;
 
 int year, month, day;
 
-ll pastDay(int x){
+ll pastDay(int x) {
 	ll day=1ll * (x + 4712) * 365;
 	if(x > 1582) day -= 10;
 	day += 1ll * (x + 4712 + 3) / 4;
