@@ -63,8 +63,6 @@ void getAns(ll n) {
 
 int main() {
 	int q;
-	// freopen("P7075_6.in", "r", stdin);
-	// freopen("P7075_6(1).out", "w", stdout);
 	scanf("%d", &q);
 	ll x;
 	for(int i = 1; i <= q; i++) {
