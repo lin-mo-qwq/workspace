@@ -1,35 +1,50 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define M 1000005
-int n, m, room[M], d[M], l[M], r[M], diff[M], need[M];
-bool check(int x)
-{
-	memset(diff, 0, sizeof(diff));
-	for(int i = 1; i <= x; i++)
-	{
-		diff[l[i]] += d[i];
-		diff[r[i] + 1] -= d[i];
+const int N = 1e6 + 5;
+int n, m, room[N];
+struct Need {
+	int ret, l, r;
+} need[N];
+
+bool judge(int x) {
+	int diff[N];
+	memset(diff, 0, sizeof diff);
+	for(int i = 1; i <= x; i++) {
+		diff[need[i].l] += need[i].ret;
+		diff[need[i].r + 1] -= need[i].ret;
 	}
-	for(int i = 1; i <= n; i++)
-	{
-		need[i] = diff[i] + need[i - 1];
-		if(need[i] > room[i]) return false;
+	for(int i = 1; i <= n; i++) {
+		diff[i] += diff[i - 1];
+		if(diff[i] > room[i]) return false;
 	}
 	return true;
 }
-int main()
-{	
-	cin>>n>>m;
-	int begin = 1, end = m;
-	for(int i = 1; i <= n; i++) cin>>room[i];
-	for(int i = 1; i <= m; i++)	cin>>d[i]>>l[i]>>r[i];
-	if(check(m)) cout<<0<<endl, exit(0);
-	while(begin < end)
-	{
-		int mid = (begin + end) / 2;
-		if(check(mid)) begin = mid + 1;
-		else end = mid;
+
+int main() {
+	scanf("%d%d", &n, &m);
+	for(int i = 1; i <= n; i++) {
+		scanf("%d", &room[i]);
 	}
-	printf("%d\r\n%d\r\n", -1, begin);
+	for(int i = 1; i <= m; i++) {
+		int ret, l, r;
+		scanf("%d%d%d", &ret, &l, &r);
+		need[i] = {ret, l, r};
+	}
+
+	if(judge(m)) {
+		printf("0\n");
+		return 0;
+	} 
+
+	int l = 1, r = m;
+	while(l <= r) {
+		int mid = (l + r) / 2;
+		if(judge(mid)) {
+			l = mid + 1;
+		} else {
+			r = mid - 1;
+		}
+	}
+	printf("-1\n%d\n", l);
 	return 0;
 }
