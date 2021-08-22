@@ -20,9 +20,9 @@ int dijkstra() {
 			}
 		}
 	}
-	
+
 	if(dist[s] == INF) return -1;
-	return dist[s]; 
+	return dist[s];
 }
 
 int main() {
