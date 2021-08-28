@@ -1,39 +1,41 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int N = 105;
-int n;
-int g[N][N], dist[N];
-bool st[N];
-
-int prim() {
-    int ans = 0;
-    memset(dist, 0x3f, sizeof dist);
-    dist[1] = 0;
-    for(int i = 0; i < n; i++) {
-        int t = -1;
-        
-        for(int j = 1; j <= n; j++) {
-            if(!st[j] && (t == -1 || dist[t] > dist[j])) {
-                t = j;
-            }
-        }
-
-        st[t] = true;
-        ans += dist[t];
-
-        for(int j = 1; j <= n; j++)  
-            dist[j] = min(dist[j], g[t][j]);
+const int N = 310, M = 8010;
+int n, m, p[N];
+struct edge {
+    int u, v, w;
+    bool operator < (const edge x) const {
+        return w < x.w;
     }
+} e[M];
 
-    return ans;
+int find(int x) {
+    if(p[x] != x) return p[x] = find(p[x]);
+    else return x;
 }
 
 int main() {
-    scanf("%d", &n);
-    for(int i = 1; i <= n; i++)
-        for(int j = 1; j <= n; j++) 
-            scanf("%d", &g[i][j]);
+    scanf("%d%d", &n, &m);
 
-    printf("%d\n", prim());
+    for(int i = 1; i <= n; i++) p[i] = i;
+
+    for(int i = 1; i <= m; i++) {
+        int u, v, w;
+        scanf("%d%d%d", &u, &v, &w);
+        e[i] = {u, v, w};
+    }
+
+    int res = 0;
+    sort(e + 1, e + 1 + m);
+
+    for(int i = 1; i <= m; i++) {
+        int u = find(e[i].u), v = find(e[i].v);
+        if(u != v) {
+            p[u] = v;
+            res = e[i].w;
+        }
+    }
+
+    printf("%d %d\n", n - 1, res);
     return 0;
 }
