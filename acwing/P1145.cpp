@@ -27,28 +27,6 @@ int find(int x) {
     else return x;
 }
 
-bool check(double d) {
-    memset(st, 0, sizeof st);
-    int cnt = 0; 
-
-    for(int i = 1; i <= n; i++) 
-        dad[i] = i;  
-    
-    for(int i = 1; i <= m; i++) {
-        int u = e[i].u, v = e[i].v;
-        u = find(u), v = find(v);
-        if(u != v) {
-            dad[u] = v;
-            if(e[i].w > d) {
-                if(!st[u]) st[u] = true, cnt++;
-                if(!st[v]) st[v] = true, cnt++;
-            } 
-        } 
-    }  
-
-    return cnt <= k;
-}
-
 int main() {
     scanf("%d%d", &n, &k);
     for(int i = 1; i <= n; i++) {
@@ -61,19 +39,23 @@ int main() {
     }
 
     sort(e + 1, e + 1 + m);
+    int cnt = n; 
 
-
-    double l = 0, r = 1e9, best = -1;
-    while(r - l > mus) {
-        double mid = (l + r) / 2;
-        if(check(mid)) {
-            best = mid;
-            r = mid;
-        } else {
-            l = mid;
+    for(int i = 1; i <= n; i++) 
+        dad[i] = i;  
+    
+    for(int i = 1; i <= m; i++) {
+        int u = e[i].u, v = e[i].v;
+        u = find(u), v = find(v);
+        if(u != v) {
+            dad[u] = v;
+            cnt--;
+            if(k >= cnt) {
+                printf("%.2lf\n", e[i].w); 
+                break;
+            }
         } 
-    }
+    }  
 
-    printf("%.2lf\n", best);
     return 0;
 }
