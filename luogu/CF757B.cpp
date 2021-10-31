@@ -16,7 +16,7 @@ int main()
 	
 	memset(P, 1, sizeof(P));
 
-	P[0] = P[1] =false;
+	P[0] = P[1] = false;
 
 	for(int i = 2, t; i <= maxs; i++)
 	{
